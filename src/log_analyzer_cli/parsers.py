@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 
 _NGINX_RE = re.compile(
@@ -56,11 +56,22 @@ def _parse_iso(ts_val: Any) -> Optional[datetime]:
     if ts_val is None:
         return None
     if isinstance(ts_val, (int, float)):
-        # epoch seconds
-        return datetime.fromtimestamp(float(ts_val))
+        # epoch seconds or milliseconds
+        ts_float = float(ts_val)
+        if ts_float >= 1_000_000_000_000:
+            ts_float /= 1000.0
+        return datetime.fromtimestamp(ts_float, tz=timezone.utc)
     if not isinstance(ts_val, str):
         return None
     s = ts_val.strip()
+        if s.isdigit():
+        try:
+            ts_float = float(s)
+        except Exception:  # noqa: BLE001
+            return None
+        if ts_float >= 1_000_000_000_000:
+            ts_float /= 1000.0
+        return datetime.fromtimestamp(ts_float, tz=timezone.utc)
     if s.endswith('Z'):
         s = s[:-1] + '+00:00'
     try:
