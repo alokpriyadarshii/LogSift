@@ -64,7 +64,7 @@ def _parse_iso(ts_val: Any) -> Optional[datetime]:
     if not isinstance(ts_val, str):
         return None
     s = ts_val.strip()
-        if s.isdigit():
+    if s.isdigit():
         try:
             ts_float = float(s)
         except Exception:  # noqa: BLE001
