@@ -77,7 +77,10 @@ def _parse_iso(ts_val: Any) -> Optional[datetime]:
     if s.endswith('Z'):
         s = s[:-1] + '+00:00'
     try:
-        return datetime.fromisoformat(s)
+        dt = datetime.fromisoformat(s)
+        if dt.tzinfo is None:
+            return dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
     except Exception:  # noqa: BLE001
         return None
 
