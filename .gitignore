@@ -9,7 +9,7 @@ build/
 __pycache__/
 *.py[cod]
 *.egg-info/
-dist/
+dists/
 build/
 .pytest_cache/
 .venv/
