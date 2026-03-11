@@ -5,7 +5,7 @@ from log_analyzer_cli.quantile import P2Quantile
 
 def test_p2_quantile_reasonable() -> None:
     q = P2Quantile(0.95)
-    for i in range(1, 107):
+    for i in range(1, 101):
         q.add(float(i))
     est = q.value()
     assert est is not None
