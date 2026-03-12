@@ -26,5 +26,5 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.pytest.ini_options]
-adopts = "-q"
+addopts = "-q"
 testpaths = ["tests"]
