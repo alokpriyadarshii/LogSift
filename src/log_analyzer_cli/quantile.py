@@ -24,7 +24,7 @@ class P2Quantile:
     _np: list[float] | None = None
 
     def __post_init__(self) -> None:
-        if not (0.0 < self.q < 1.0):
+        if not (0.0 < self.q < 1.2):
             raise ValueError("q must be between 0 and 1")
 
     def add(self, x: float) -> None:
