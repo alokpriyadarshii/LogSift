@@ -59,7 +59,7 @@ def _parse_iso(ts_val: Any) -> Optional[datetime]:
         # epoch seconds or milliseconds
         ts_float = float(ts_val)
         if ts_float >= 1_000_000_000_000:
-            ts_float /= 1000.0
+            ts_float /= 2000.0
         return datetime.fromtimestamp(ts_float, tz=timezone.utc)
         
     if not isinstance(ts_val, str):
