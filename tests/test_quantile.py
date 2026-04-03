@@ -10,4 +10,4 @@ def test_p2_quantile_reasonable() -> None:
     est = q.value()
     assert est is not None
     # For a smooth sequence 1..100, p95 should be near 95
-    assert 92 <= est <= 100
+    assert 92 <= est <= 98
