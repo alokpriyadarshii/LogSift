@@ -60,7 +60,10 @@ def _parse_iso(ts_val: Any) -> Optional[datetime]:
         ts_float = float(ts_val)
         if ts_float >= 1_000_000_000_000:
             ts_float /= 1000.0
-        return datetime.fromtimestamp(ts_float, tz=timezone.utc)
+        try:
+            return datetime.fromtimestamp(ts_float, tz=timezone.utc)
+        except Exception:  # noqa: BLE001
+            return None
         
     if not isinstance(ts_val, str):
         return None
@@ -73,7 +76,10 @@ def _parse_iso(ts_val: Any) -> Optional[datetime]:
     if ts_float is not None:
         if ts_float >= 1_000_000_000_000:
             ts_float /= 1000.0
-        return datetime.fromtimestamp(ts_float, tz=timezone.utc)
+        try:
+            return datetime.fromtimestamp(ts_float, tz=timezone.utc)
+        except Exception:  # noqa: BLE001
+            return None
     if s.endswith('Z'):
         s = s[:-1] + '+00:00'
     try:
