@@ -45,3 +45,9 @@ def test_parse_jsonl_huge_epoch_seconds_returns_none_timestamp() -> None:
     assert event is not None
     assert event.ts is None
 
+
+def test_parse_jsonl_huge_epoch_string_returns_none_timestamp() -> None:
+    line = '{"timestamp": "99999999999999999999", "path":"/", "status":200}\n'
+    event = parse_jsonl(line)
+    assert event is not None
+    assert event.ts is None
