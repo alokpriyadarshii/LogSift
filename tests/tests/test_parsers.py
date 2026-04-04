@@ -38,3 +38,10 @@ def test_parse_jsonl_naive_iso_assumed_utc() -> None:
     event = parse_jsonl(line)
     assert event is not None
     assert event.ts == datetime(2026, 1, 16, 10, 0, 0, tzinfo=timezone.utc)
+
+def test_parse_jsonl_huge_epoch_seconds_returns_none_timestamp() -> None:
+    line = '{"timestamp": 99999999999999999999, "path":"/", "status":200}\n'
+    event = parse_jsonl(line)
+    assert event is not None
+    assert event.ts is None
+
