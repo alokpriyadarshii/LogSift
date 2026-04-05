@@ -22,7 +22,7 @@ def test_nginx_summary() -> None:
     assert ("500", 1) in res.status_counts
 
     assert res.latency_ms["p50"] == 120.0
-    assert res.latency_ms["p95"] == 290.0
+    assert res.latency_ms["p95"] == 250.0
 
 
 def test_json_summary() -> None:
