@@ -3,7 +3,7 @@
 LogSift is a lightweight streaming CLI tool for analyzing log files. It is designed to process logs line by line, so it can summarize large files without loading everything into memory.
 
 It currently supports:
-- **Nginx combined-style access logs** with optional `request_time`
+- **Nginx combined style access logs** with optional `request_time`
 - **JSON Lines (JSONL)** application logs
 
 ## Features
