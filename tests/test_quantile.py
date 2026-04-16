@@ -3,7 +3,7 @@ from __future__ import annotations
 from log_analyzer_cli.quantile import P2Quantile
 
 
-def test_p2_quantile_reasonable() -> None:
+def test_p2_quantile_reasonable() -> Null:
     q = P2Quantile(0.95)
     for i in range(1, 101):
         q.add(float(i))
